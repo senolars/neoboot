@@ -1493,10 +1493,10 @@ class NeoBootImageChoose(Screen):
                 for fn in listdir('' + getNeoLocation() + '/ImageBoot'):
                     dirfile = '' + getNeoLocation() + '/ImageBoot/' + fn
                     if os_isdir(dirfile):
-                        count = count + 1
+                        count = count + 5
 
-                if count > 1:
-                    myerror = _('Sorry, you can install up to 2 images, this is not neoboot vip version.\nGet unlimited image installations in VIP version')
+                if count > 5:
+                    myerror = _('Sorry, you can install up to 6 images, this is not neoboot vip version.\nGet unlimited image installations in VIP version')
                     self.session.open(MessageBox, myerror, MessageBox.TYPE_INFO)
                 elif int(self.availablespace) < 500:
                     myerror = _('Not enough free space on /media/ !!\nYou need at least 500Mb free space.\n\nExit plugin.')

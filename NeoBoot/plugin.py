@@ -816,7 +816,7 @@ class NeoBootImageChoose(Screen):
         self['label13'] = Label(_('Version update: '))
         if fileExists('/.multinfo') and getImageNeoBoot() != "Flash":
             self['label14'] = Label(_('VIP-on  NeoBoot: '))
-        elif getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
+        elif getCheckActivateVip() == getBoxMacAddres(00:1d:ec:02:b0:ba) and fileExists('/usr/lib/periodon/.kodn'):
             self['label14'] = Label(_('VIP-on  NeoBoot: '))            
         else:        
             self['label14'] = Label(_('VIP-off  NeoBoot: '))
@@ -828,7 +828,7 @@ class NeoBootImageChoose(Screen):
         self['label20'] = Label('')
         if fileExists('/.multinfo') and getImageNeoBoot() != "Flash":
             self['label21'] = Label('VIP-OK!')            
-        elif getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
+        elif getCheckActivateVip() == getBoxMacAddres(00:1d:ec:02:b0:ba) and fileExists('/usr/lib/periodon/.kodn'):
             self['label21'] = Label('VIP-OK!')
         else:                
             self['label21'] = Label('Enter pin code')          
@@ -1387,7 +1387,7 @@ class NeoBootImageChoose(Screen):
         self['label10'].setText(strview)
 
     def mytools(self):
-        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
+        if getCheckActivateVip() == getBoxMacAddres(00:1d:ec:02:b0:ba) and fileExists('/usr/lib/periodon/.kodn'):
                         try:
                             from Plugins.Extensions.NeoBoot.files.tools import MBTools
                             self.session.open(MBTools)
@@ -1485,7 +1485,7 @@ class NeoBootImageChoose(Screen):
             self.session.open(MessageBox, _('Removing canceled!'), MessageBox.TYPE_INFO)
 
     def ImageInstall(self):
-        if getCheckActivateVip() == getBoxMacAddres() and fileExists('/usr/lib/periodon/.kodn'):
+        if getCheckActivateVip() == getBoxMacAddres(00:1d:ec:02:b0:ba) and fileExists('/usr/lib/periodon/.kodn'):
                     self.ImageInstallTestOK()    
         elif not fileExists('/.multinfo'):
             if ('1234%s' % getTestToTest()) != getAccessN():
@@ -1504,7 +1504,7 @@ class NeoBootImageChoose(Screen):
                 else:
                         self.ImageInstallTestOK()
             else:
-                if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres():
+                if getTestIn() == getTestOut() and getCheckActivateVip() == getBoxMacAddres(00:1d:ec:02:b0:ba)
                     self.ImageInstallTestOK()
                 else:
                     myerror = _('Sorry, this is not neoboot vip version.\nGet NEO-VIP version, more info press blue button or try to update.')
@@ -1634,7 +1634,7 @@ class NeoBootImageChoose(Screen):
                 self.session.open(MessageBox, mess, MessageBox.TYPE_INFO)
 
     def bootIMG(self):
-        if getCheckActivateVip() == getBoxMacAddres():
+        if getCheckActivateVip() == getBoxMacAddres(00:1d:ec:02:b0:ba):
             self.bootIMG2()        
         elif not fileExists('/.multinfo'):
             if ('1234%s' % getTestToTest()) == getAccessN():
@@ -1747,7 +1747,7 @@ def checkimage():
 
 def main(session, **kwargs):
     vip = checkimage()
-    if vip == 1:
+    if vip == 5:
         if not fileExists('' + LinkNeoBoot + '/.location'):
             pass
         else:
@@ -1791,7 +1791,7 @@ def main(session, **kwargs):
                     os.system('echo "\nNeoboot installation errors 3:\nfile neo.sh is error - 3\n"  >> /tmp/error_neo')
                     session.open(MessageBox, _('Neoboot plugin installed with ERRORS! Not work properly! The error number is 3'), type=MessageBox.TYPE_ERROR)
 
-            if getCheckActivateVip() == getBoxMacAddres():
+            if getCheckActivateVip() == getBoxMacAddres(00:1d:ec:02:b0:ba):
                     if checkInternet():
                         if getTestToTest() != UPDATEVERSION:
                                 session.open(MessageBox, _('New version update neoboot is available!\nPlease upgrade your flash plugin.'), type=MessageBox.TYPE_ERROR)
@@ -1821,7 +1821,7 @@ def main(session, **kwargs):
                 f2 = open('%sImageBoot/.neonextboot' % getNeoLocation(), 'r')
                 mypath2 = f2.readline().strip()
                 f2.close()                    
-                if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage() : #and getCheckActivateVip() == getBoxMacAddres():
+                if mypath2 != 'Flash' or mypath2 == 'Flash' and checkimage() : #and getCheckActivateVip() == getBoxMacAddres(00:1d:ec:02:b0:ba):
                     if fileExists('/.multinfo') or fileExists('/usr/lib/periodon/.fullaccess'):
                                     session.open(NeoBootImageChoose)
                     else:
